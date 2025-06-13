@@ -1,0 +1,27 @@
+<mvc:View controllerName="project1.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+    <Page id="page" title="Rivian Launch Guess App">
+        <VBox id="vboxMain" class="sapUiSmallMargin" alignItems="Center">
+            <SegmentedButton id="modelSelector" selectionChange="onModelSelect">
+                <items>
+                    <SegmentedButtonItem id="itemR2" text="R2" key="R2"/>
+                    <SegmentedButtonItem id="itemR3" text="R3" key="R3"/>
+                </items>
+            </SegmentedButton>
+
+            <Image
+    id="carImage"
+    src="img/r2.jpg"
+    width="1000px"
+    height="550px"
+    class="carImage sapUiMediumMargin"
+    densityAware="false"/>
+
+
+            <Input id="yearInput" placeholder="Guess the launch year..." width="200px" class="sapUiSmallMargin"/>
+
+            <Button id="submitGuessBtn" text="Submit Guess" press="onSubmitGuess"/>
+        </VBox>
+    </Page>
+</mvc:View>
