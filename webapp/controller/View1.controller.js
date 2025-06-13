@@ -22,13 +22,14 @@ sap.ui.define([
                 const imgPath = "img/" + selected.toLowerCase() + ".jpg";
                 this.byId("carImage").setSrc(imgPath);
 
-                // 🔹 jQuery enhancement: wait for control to render
+                // jQuery enhancement: wait for control to render
+
                 this.byId("carImage").addEventDelegate({
                     onAfterRendering: () => {
                         const $img = this.byId("carImage").$(); // jQuery reference
-
+                        const currentModel = model.getProperty("/selectedModel");
                         // Add tooltip dynamically
-                        $img.attr("title", `Currently showing: ${selected} Model`);
+                        $img.attr("title", `Currently showing: ${currentModel} Model`);
 
                         // Animate border to highlight image
                         $img.css({
@@ -58,7 +59,7 @@ sap.ui.define([
         //     image.setSrc("img/" + selectedKey.toLowerCase() + ".jpg");
         // },
         onModelSelect(oEvent) {
-            const selectedKey = oEvent.getParameter("item").getKey(); // R2 or R3
+            const selectedKey = oEvent.getParameter("item").getKey(); // evwnts : R2 or R3
             const model = this.getView().getModel("car");
             model.setProperty("/selectedModel", selectedKey);
 
@@ -72,7 +73,7 @@ sap.ui.define([
                 // Reset styles before animating
                 $image.css({ display: "block", marginLeft: "-30px", opacity: 0 });
 
-                // Now animate in
+                // animate
                 $image.animate(
                     { marginLeft: "0px", opacity: 1 },
                     {
@@ -80,6 +81,7 @@ sap.ui.define([
                         easing: "swing",
                         complete: () => {
                             $image.css("marginLeft", ""); // clean up
+                            $image.attr("title", `Currently showing: ${selectedKey} Model`);
                         }
                     }
                 );
