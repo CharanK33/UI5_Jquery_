@@ -5,18 +5,6 @@
 |**App Generator**<br>SAP Fiori Application Generator|
 |**App Generator Version**<br>1.18.0|
 |**Generation Platform**<br>Visual Studio Code|
-|**Template Used**<br>Basic|
-|**Service Type**<br>None|
-|**Service URL**<br>N/A|
-|**Module Name**<br>project1|
-|**Application Title**<br>App Title|
-|**Namespace**<br>|
-|**UI5 Theme**<br>sap_horizon|
-|**UI5 Version**<br>1.136.1|
-|**Enable Code Assist Libraries**<br>False|
-|**Enable TypeScript**<br>False|
-|**Add Eslint configuration**<br>False|
-
 ## project1
 
 An SAP Fiori application.
@@ -32,5 +20,6 @@ An SAP Fiori application.
 #### Pre-requisites:
 
 1. Active NodeJS LTS (Long Term Support) version and associated supported NPM version.  (See https://nodejs.org)
+
 
 
