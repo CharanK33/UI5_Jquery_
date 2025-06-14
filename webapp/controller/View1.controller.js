@@ -138,6 +138,44 @@ sap.ui.define([
                 $input.animate({ left: "0px" }, 50); // reset
 
             }
+        },
+        onPageSelect(oEvent) {
+            const selectedKey = oEvent.getParameter("selectedItem").getKey();
+            if (selectedKey === "specs") {
+                this.getOwnerComponent().getRouter().navTo("Specs");
+            }
+        },
+        onModelDisplay: function () {
+            this.byId("vboxMain").setVisible(true);
+            this.byId("specsVBox").setVisible(false);
+        },
+
+        onSpecsDisplay: function () {
+            this.byId("vboxMain").setVisible(false);
+            this.byId("specsVBox").setVisible(true);
+        },
+
+        // onToggleSidebar: function () {
+        //     const $sidebar = this.byId("sidebar").$();
+
+        //     if ($sidebar.hasClass("sidebarHidden")) {
+        //         $sidebar.removeClass("sidebarHidden").slideDown(200);
+        //     } else {
+        //         $sidebar.addClass("sidebarHidden").slideUp(200);
+        //     }
+        // }
+        onToggleSidebar: function () {
+            const sidebar = this.byId("sidebar");
+            if (sidebar.getVisible()) {
+                sidebar.setVisible(false);
+            } else {
+                sidebar.setVisible(true);
+            }
+        },
+        onToggleNav: function () {
+            const navBar = this.byId("navBar");
+            const isVisible = navBar.getVisible();
+            navBar.setVisible(!isVisible);
         }
 
 

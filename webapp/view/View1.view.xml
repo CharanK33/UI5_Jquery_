@@ -1,27 +1,65 @@
 <mvc:View controllerName="project1.controller.View1"
     xmlns:mvc="sap.ui.core.mvc"
-    xmlns="sap.m">
-    <Page id="page" title="Rivian Launch Guess App">
-        <VBox id="vboxMain" class="sapUiSmallMargin" alignItems="Center">
-            <SegmentedButton id="modelSelector" selectionChange="onModelSelect">
-                <items>
-                    <SegmentedButtonItem id="itemR2" text="R2" key="R2"/>
-                    <SegmentedButtonItem id="itemR3" text="R3" key="R3"/>
-                </items>
-            </SegmentedButton>
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
 
-            <Image
-    id="carImage"
-    src="img/r2.jpg"
-    width="1000px"
-    height="550px"
-    class="carImage sapUiMediumMargin"
-    densityAware="false"/>
+    <Page id="page" showHeader="false">
+    <Bar id="topBar">
+            <contentLeft>
+                <Button id="toggleSidebarBtn" icon="sap-icon://menu2" press="onToggleSidebar"/>
+            </contentLeft>
+            <contentMiddle>
+        <Text id="titleText" text="RIVIAN" class="rivianTitle"/>
+    </contentMiddle>
+        </Bar>
+        <HBox id="mainHBox" class="mainContainer gradientBackground">
+            <!-- 🔹 Left vertical nav bar -->
+            
+           <VBox id="sidebar" width="200px" class="customSidebar" visible="true" alignItems="Center">
+    <Button id="btnModelDisplay" text="Model Display" press="onModelDisplay"/>
+    <Button id="btnSpecifications" text="Specifications" press="onSpecsDisplay"/>
 
 
-            <Input id="yearInput" placeholder="Guess the launch year..." width="200px" class="sapUiSmallMargin"/>
+  </VBox>
 
-            <Button id="submitGuessBtn" text="Submit Guess" press="onSubmitGuess"/>
-        </VBox>
+            <!-- 🔹 Main content area -->
+            <VBox id="vboxMain" class="contentBox" alignItems="Center">
+                <HBox id="segmentedWrapper" class="segmentedWrapper">
+
+                <SegmentedButton id="modelSelector" selectionChange="onModelSelect" class="customSegmentedButton">
+                    <items>
+                        <SegmentedButtonItem id="itemR1" text="R1" key="R1"/>
+                        <SegmentedButtonItem id="itemR2" text="R2" key="R2"/>
+                        <SegmentedButtonItem id="itemR3" text="R3" key="R3"/>
+                    </items>
+                </SegmentedButton>
+</HBox>
+                <Image id="carImage" src="img/r1.jpg" width="1000px" height="auto"
+                    class="carImage sapUiMediumMargin" densityAware="false"/>
+
+                <Input id="yearInput" placeholder="Guess the launch year..." width="200px" class="sapUiSmallMargin"/>
+                <Button id="submitGuessBtn" text="Submit Guess" press="onSubmitGuess"/>
+            </VBox>
+            <VBox id="specsVBox" class="sapUiSmallMargin specsBackground" visible="false">
+                <Table id="specsTable" items="{car>/specifications}" inset="false" width="auto">
+    <columns>
+        <Column id="colSpec"><Text id="txtSpecHeader" text="Specification"/></Column>
+        <Column id="colR1"><Text id="txtR1Header" text="R1"/></Column>
+        <Column id="colR2"><Text id="txtR2Header" text="R2"/></Column>
+        <Column id="colR3"><Text id="txtR3Header" text="R3"/></Column>
+    </columns>
+    <items>
+        <ColumnListItem id="specRowTemplate">
+            <cells>
+                <Text id="txtSpec" text="{car>spec}"/>
+                <Text id="txtR1" text="{car>r1}"/>
+                <Text id="txtR2" text="{car>r2}"/>
+                <Text id="txtR3" text="{car>r3}"/>
+            </cells>
+        </ColumnListItem>
+    </items>
+</Table>
+            </VBox>
+        </HBox>
     </Page>
 </mvc:View>
